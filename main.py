@@ -1,3 +1,4 @@
+
 import asyncio
 import os
 import threading
@@ -32,6 +33,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 VOICE_CHANNEL_ID = 1549928610201342022 
 TEXT_CHANNEL_ID = 1549928610201342022   
+LOG_CHANNEL_ID = 1425806157120929814  # 👈 استبدل الرقم بـ ID روم اللوق
 
 current_volume = 1.0  # الصوت الافتراضي (100%)
 
@@ -169,6 +171,16 @@ async def on_message(message):
 
             response_text = f"*Playing song* : **{song_title}**\n*by* : **{message.author.display_name}**"
             await message.reply(response_text, mention_author=False)
+
+            # --- إرسال اللوق بشكل آمن وبالمظهر الجديد المطلوب ---
+            if LOG_CHANNEL_ID:
+                try:
+                    log_channel = bot.get_channel(LOG_CHANNEL_ID)
+                    if log_channel:
+                        log_msg = f"🎵 {message.author.mention} شغل **{song_title}**"
+                        await log_channel.send(log_msg)
+                except Exception as log_error:
+                    print(f"تعذر إرسال اللوق بسبب الصلاحيات: {log_error}")
 
         except Exception as e:
             print(f"خطأ أثناء جلب المقطع من ساوندكلاود: {e}")
