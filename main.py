@@ -30,8 +30,8 @@ intents.guilds = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-VOICE_CHANNEL_ID = 1541423933516029982 
-TEXT_CHANNEL_ID = 1541423933516029982   
+VOICE_CHANNEL_ID = 1549928610201342022 
+TEXT_CHANNEL_ID = 1549928610201342022   
 
 current_volume = 1.0  # الصوت الافتراضي (100%)
 
